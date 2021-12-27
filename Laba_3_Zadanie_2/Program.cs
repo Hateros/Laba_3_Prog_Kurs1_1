@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Laba_3_Zadanie_2
 {
@@ -20,59 +20,42 @@ namespace Laba_3_Zadanie_2
                     }
                 }
             }
-            Console.WriteLine("\nСколько раз Вы желаете повернуть? 1, 2 или 3?");
+            int temporaryForArrayTurn;
+            Console.WriteLine("\nСколько раз Вы желаете повернуть? 1, 1 или 1?");
             int N = int.Parse(Console.ReadLine());
             Console.WriteLine();
+
             if (N == 1)
             {
-                for (int i = 0; i < 7; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    for (int j = 6; j >= 0; j--)
+                    for (int j = 0; j < 6 - 2 * i; j++)
+                    {
+                        temporaryForArrayTurn = KrutoiMassiv[j + i, i];
+                        KrutoiMassiv[j + i, i] = KrutoiMassiv[i, 6 - j - i];
+                        KrutoiMassiv[6 - j - i, 6 - i] = KrutoiMassiv[6 - i, j + i];
+                        KrutoiMassiv[i, 6 - j - i] = KrutoiMassiv[6 - j - i, 6 - i];
+                        KrutoiMassiv[6 - i, j + i] = temporaryForArrayTurn;
+                    }
+                }
+                for (int j = 0; j < 7; j++)
+                {
+                    for (int i = 0; i < 7; i++)
                     {
                         Console.Write("{0} ", KrutoiMassiv[i, j]);
-                        if (j == 0)
+                        if (i == 6)
                         {
                             Console.WriteLine();
                         }
                     }
                 }
-            }
-            else if (N == 2)
-            {
-                for (int j = 6; j >= 0; j--)
-                {
-                    for (int i = 6; i >= 0; i--)
-                    {
-                        Console.Write("{0} ", KrutoiMassiv[i, j]);
-                        if (i == 0)
-                        {
-                            Console.WriteLine();
-                        }
-                    }
-                }
-            }
-            else if (N == 3)
-            {
-                for (int i = 6; i >= 0; i--)
-                {
-                    for (int j = 0; j < 7; j++)
-                    {
-                        Console.Write("{0} ", KrutoiMassiv[i, j]);
-                        if (j == 6)
-                        {
-                            Console.WriteLine();
-                        }
-                    }
-                }
-            }
-            else if (N == 4)
-            {
-                Console.WriteLine("Ну и зачем ты ввёл 4? Уже перевернули массив, посмотри выше!");
             }
             else
             {
                 Console.WriteLine("Данная функция заблокирована в бесплатной версии \nДля разблокировки Премиум версии внесите 50 рублей в дисковод!");
             }
+            
+
         }
 
     }
