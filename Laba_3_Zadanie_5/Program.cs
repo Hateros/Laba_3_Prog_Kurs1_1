@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Laba_3_Zadanie_5
 {
@@ -37,18 +37,31 @@ namespace Laba_3_Zadanie_5
             }
             Console.WriteLine("\nВы только посмотрите на эту третью прекрасную матрицу 5х5, полученную в результате произведения первых двух!\n");
             int[,] KrutoiMassiv3 = new int[5, 5];
-            for (int j = 0; j < 5; j++)
+            int resultOf = 0;
+            for (int i = 0; i < 5; i++)
             {
-                for (int i = 0; i < 5; i++)
+                for (int j = 0; j < 5; j++)
                 {
-                    KrutoiMassiv3[i, j] = KrutoiMassiv1[i, j] * KrutoiMassiv2[i, j];
+                    for (int k = 0; k < 5; k++)
+                    {
+                        //KrutoiMassiv3[i, j] = KrutoiMassiv1[i, j] * KrutoiMassiv2[j, i];
+                        resultOf += KrutoiMassiv1[k, j] * KrutoiMassiv2[i, k];
+
+                    }
+                    KrutoiMassiv3[j, i] = resultOf;
+                    resultOf = 0;
+                }
+            }
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
                     Console.Write("{0} ", KrutoiMassiv3[i, j]);
-                    if (i == 4)
+                    if (j == 4)
                     {
                         Console.WriteLine();
                     }
                 }
-
             }
         }
     }
